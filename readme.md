@@ -11,7 +11,9 @@ $ docker-compose up -d --build
 ### Criando o banco de dados 📒🎲
 ```
 $ docker-compose exec adminpanelv3api artisan migrate:fresh --seed 
-#Talvez seja necessário rodar a seeder separada, então pode rodar:
+```
+#### * Talvez seja necessário rodar a seeder separada, então pode rodar:
+```sh
 $ docker-compose exec adminpanelv3api php -c php.ini artisan db:seed --class=DatabaseSeeder
 ```
 ####  * Vai rodar porta:80 🚪
