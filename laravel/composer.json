@@ -12,7 +12,6 @@
         "laravel/passport": "^10.4",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
-        "mercadopago/dx-php": "2.5.0",
         "symfony/http-client": "^6.1",
         "symfony/mailgun-mailer": "^6.1",
         "tymon/jwt-auth": "^1.0"
