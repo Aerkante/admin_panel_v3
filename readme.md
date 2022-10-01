@@ -20,6 +20,8 @@ $ docker-compose exec adminpanelv3api php -c php.ini artisan db:seed --class=Dat
 
 ### Acessos do pgadmin 🔐🤫
 ```md
+Link do pgadmin : http://localhost:5433/
+
 DB_DATABASE=laravel
 DB_USERNAME=laravel
 DB_PASSWORD=pgadmin
