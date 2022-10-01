@@ -1,8 +1,8 @@
 # Projeto de painel para sites personalizados✨
 
 ### Instalação do docker e laravel 🧑🏾‍🔧
-Copia o .env.exemple para .env
-e executa:
+Entre na pasta do laravel e copie o .env.exemple para .env
+e execute:
 
 ```sh
 $ docker-compose up -d --build
