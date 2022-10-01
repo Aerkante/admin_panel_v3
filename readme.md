@@ -6,6 +6,8 @@ e execute:
 
 ```sh
 $ docker-compose up -d --build
+
+$ docker-compose exec adminpanelv3api composer upgrade
 ``` 
 
 ### Criando o banco de dados 📒🎲
