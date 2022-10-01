@@ -1,0 +1,80 @@
+version: "3.7"
+services:
+    adminpanelv3api:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+            args:
+                user: adminpanelv3
+                uid: 1000
+        container_name: adminpanelv3api
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        networks:
+            - adminpanelv3
+
+        depends_on:
+            - pgsql
+            - redis
+
+    pgsql:
+        image: "postgres:13"
+        container_name: pgsql
+        ports:
+            - "${DB_PORT:-5432}:5432"
+        environment:
+            PGPASSWORD: "${DB_PASSWORD}"
+            POSTGRES_DB: "${DB_DATABASE}"
+            POSTGRES_USER: "${DB_USERNAME}"
+            POSTGRES_PASSWORD: "${DB_PASSWORD}"
+        volumes:
+            - adminpanelv3pgsql:/var/lib/postgresql/data
+        networks:
+            - adminpanelv3
+
+    redis:
+        image: "redis:alpine"
+        container_name: redis
+        ports:
+            - "${REDIS_PORT:-6379}:6379"
+        volumes:
+            - "adminpanelv3redis:/data"
+        networks:
+            - adminpanelv3
+
+    pgadmin:
+        image: dpage/pgadmin4:4
+        container_name: pgadmin
+        environment:
+            PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEFAULT_EMAIL}"
+            PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEFAULT_PASSWORD}"
+        ports:
+            - "5433:80"
+        depends_on:
+            - pgsql
+        networks:
+            - adminpanelv3
+
+    nginx:
+        image: nginx:alpine
+        container_name: nginx
+        restart: unless-stopped
+        ports:
+            - 8000:80
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx:/etc/nginx/conf.d/
+        networks:
+            - adminpanelv3
+
+networks:
+    adminpanelv3:
+        driver: bridge
+
+volumes:
+    adminpanelv3pgsql:
+        driver: local
+    adminpanelv3redis:
+        driver: local
