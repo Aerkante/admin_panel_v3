@@ -53,7 +53,7 @@ $newPass = $data['pass'];
         </div>
 
         <p style="margin-top: 2rem;">
-            Atenciosamente, Equipe Tudo em Dobro.
+            Atenciosamente, Equipe Admin Panel V3.
         </p>
 
     </font>

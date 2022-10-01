@@ -15,10 +15,7 @@ class UserData extends Model
         'birthday',
         'telephone',
         'phone',
-        'marital_status',
-        'schooling',
         'rg',
-        'issuer',
         'cpf',
     ];
 

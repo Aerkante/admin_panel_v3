@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Company;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CompanySeeder extends Seeder
@@ -18,18 +17,15 @@ class CompanySeeder extends Seeder
     {
         $data = [
             "company" => [
-                "trade_name" => "Tudo em Dobro",
-                "category_id" => 1,
-                "operating_hours" => "Todos os dias das 10:00h às 23:00h ",
-                "instagram" => "@7cliques",
+                "trade_name" => "Company Master",
+                "instagram" => "@adminpanelv3",
                 "phone" => "4630552217",
                 "status" => 1,
-                "image_id" => 1
             ],
             "user" => [
-                "name" =>  "Marcos",
-                "password" => "cli007",
-                "email" => "teste@msn.com",
+                "name" =>  "Master",
+                "password" => "secret",
+                "email" => "master@admin.com",
             ],
             "address" => [
                 "street" => "Haroldo Hamilton",

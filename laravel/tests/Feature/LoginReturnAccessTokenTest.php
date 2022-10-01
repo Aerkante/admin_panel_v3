@@ -15,14 +15,13 @@ class LoginReturnAccessTokenTest extends TestCase
      */
     public function test_login_return_access_token()
     {
-        $email = 'test@7cliques.com.br';
-        $password = 'cli007';
+        $email = 'test@adminpanel.com.br';
+        $password = 'secret';
 
         $response = $this->post('/auth/login/', array('email' => $email, 'password' => $password));
 
-        if($response->getStatusCode() ===200) $this->assertTrue($response->getData()->access_token!==null);
+        if ($response->getStatusCode() === 200) $this->assertTrue($response->getData()->access_token !== null);
 
-        else($response->assertStatus(200));
-
+        else ($response->assertStatus(200));
     }
 }

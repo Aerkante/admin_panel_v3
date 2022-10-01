@@ -20,10 +20,7 @@ return new class extends Migration
             $table->date('birthday')->nullable();
             $table->string('telephone')->nullable();
             $table->string('phone')->nullable();
-            $table->string('marital_status')->nullable();
-            $table->string('schooling')->nullable();
             $table->string('rg')->nullable();
-            $table->string('issuer')->nullable();
             $table->string('cpf')->nullable();
             $table->enum('gender', ['m', 'f', 'x'])->default('m');
             $table->timestamps();

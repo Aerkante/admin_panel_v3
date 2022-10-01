@@ -22,8 +22,8 @@ class RootSeeder extends Seeder
 
         $user = User::create([
             "name" => "Super User",
-            "email" => "ruiz@7cliques.com.br",
-            "password" => Hash::make("cli#2027"),
+            "email" => "adminpanelv3@admin.com",
+            "password" => Hash::make("secret"),
         ]);
 
         $userData = [
@@ -32,10 +32,7 @@ class RootSeeder extends Seeder
             'birthday' => '2000-04-04',
             'telephone' => '0909340192',
             'phone' => '0909340192',
-            'marital_status' => 'Casado',
-            'schooling' => 'middle school',
             'rg' => '000000',
-            'issuer' => null,
             'cpf' => '00000000000'
         ];
 
@@ -43,19 +40,5 @@ class RootSeeder extends Seeder
 
         $user->companies()->sync([1]);
         $user->roles()->sync([$role]);
-
-
-        $domain = "adminpanelv3.com.br";
-        $prefix_pass = substr($domain, 0, 4);
-        $user = User::create([
-            "name" => "Super User",
-            "email" => "admin@$domain",
-            "password" => Hash::make("$prefix_pass#9840"),
-        ]);
-
-        $user->userData()->create($userData);
-
-        $user->roles()->sync([$role]);
-        $user->companies()->sync([1]);
     }
 }

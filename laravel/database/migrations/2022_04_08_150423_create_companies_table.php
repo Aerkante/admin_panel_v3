@@ -17,18 +17,15 @@ return new class extends Migration
             $table->id();
             $table->string('trade_name');
             $table->string('cpf_cnpj')->nullable();
-            $table->integer('category_id');
             $table->integer('user_id');
             $table->string('phone')->nullable();
             $table->string('logo')->nullable();
-            $table->string('operating_hours');
             $table->string('instagram')->nullable();
             $table->integer('status')->default(1);
             $table->integer('image_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('image_id')->references('id')->on('images');
         });
     }

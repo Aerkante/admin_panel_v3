@@ -21,8 +21,8 @@ class TestUserSeeder extends Seeder
 
         $user = User::create([
             "name" => "Test User",
-            "email" => "test@7cliques.com.br",
-            "password" => Hash::make("cli007"),
+            "email" => "test@adminpanel.com.br",
+            "password" => Hash::make("secret"),
         ]);
 
         $userData = [
@@ -31,10 +31,7 @@ class TestUserSeeder extends Seeder
             'birthday' => '2000-04-04',
             'telephone' => '0909340192',
             'phone' => '0909340192',
-            'marital_status' => 'Casado',
-            'schooling' => 'middle school',
             'rg' => '000000',
-            'issuer' => null,
             'cpf' => '00000000000'
         ];
 

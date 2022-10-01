@@ -32,6 +32,6 @@ class ResetPasswordMail extends Mailable
         $data = $this->data;
         $subject = 'Nova Senha';
         return $this->from('no-reply@adminpanelv3.com.br')->to($this->data['to'])
-            ->subject("Nova Senha | Tudo em Dobro")->view('mail.reset-pass', compact('data', 'subject'));
+            ->subject("Nova Senha | Admin Panel V3")->view('mail.reset-pass', compact('data', 'subject'));
     }
 }
