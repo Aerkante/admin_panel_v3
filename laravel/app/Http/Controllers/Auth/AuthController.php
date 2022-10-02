@@ -2,17 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Enum\ValidRoles;
 use App\Http\Controllers\ApiResponse;
 use App\Http\Controllers\Controller;
-
-use App\Http\Requests\LoginRequest;
 use App\Mail\ResetPasswordMail;
-use App\Models\Associate;
-use App\Models\Client;
 use App\Models\User;
-use App\Services\CompanyService;
-use App\Services\RoleService;
 use App\Services\TenantService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,8 +39,7 @@ class AuthController extends Controller
         }
 
         $user = User::with('userData')->find(auth()->user()->id);
-        $client = $user->client;
-        if (!$client) return ApiResponse::returnForbbiden('Usuário não é um cliente');
+
 
         return $this->createNewToken($token);
     }
@@ -104,16 +96,6 @@ class AuthController extends Controller
             $user->email = Hash::make($user->email);
             $user->status = 404;
             $user->save();
-
-            $client = Client::where('user_id', $user->id)->first();
-            if ($client) {
-
-                $client->phone = Hash::make($client->phone);
-                $client->birthday = Hash::make($client->birthday);
-                $client->status = 404;
-                $client->image_id = null;
-                $client->save();
-            }
 
             $this->logout();
 
@@ -176,10 +158,9 @@ class AuthController extends Controller
     public function userProfile()
     {
         $data = auth()->user();
-        $user = User::with('userData', 'client')->find(auth()->user()->id);
+        $user = User::find(auth()->user()->id);
         $data['tenant'] = TenantService::getTenantByUserId($user->id)->id ?? null;
         $data['roles'] = $user->roles->pluck('slug');
-        $data['client'] = $user->client ?? null;
         return response()->json($data);
     }
     /**
@@ -192,14 +173,12 @@ class AuthController extends Controller
     protected function createNewToken($token)
     {
         $user = User::with('userData')->find(auth()->user()->id);
-        $client = $user->client;
         $user['tenant'] = TenantService::getTenantByUserId($user->id)->id ?? null;
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => $user,
-            'client' => $client ?? null
         ]);
     }
 }

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Enum\ValidRoles;
-use App\Models\Company;
 use App\Services\RoleService;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
