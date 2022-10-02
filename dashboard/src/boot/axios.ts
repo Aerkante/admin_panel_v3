@@ -7,10 +7,7 @@ declare module '@vue/runtime-core' {
   }
 }
 
-const baseURL =
-  process.env.NODE_ENV === 'production'
-    ? 'https://locahost:8000/admin'
-    : 'https://locahost:8000/admin' //change in when you use decicateed server to host api
+const baseURL = 'http://localhost:8000/admin'
 
 const api = axios.create({ baseURL, headers: { Accept: 'application/json' } })
 
